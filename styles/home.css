@@ -1,0 +1,14 @@
+  
+  .background-image {
+    background-size: cover;
+    background-position: center;
+}
+  
+  .overlay {
+    z-index: 1; 
+  }
+  
+  .content {
+    z-index: 10;
+  }
+  
