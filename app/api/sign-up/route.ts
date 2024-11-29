@@ -1,21 +1,25 @@
-import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
 
-const prisma = new PrismaClient();
+import { NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
 
 export async function POST(request: Request) {
   const { email, password } = await request.json();
 
-  // Hash password
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const filePath = path.join(process.cwd(), "data", "users.json");
+  const fileData = fs.readFileSync(filePath, "utf8");
+  const users = JSON.parse(fileData);
 
-  // Create user in database
-  const user = await prisma.user.create({
-    data: {
-      email,
-      password: hashedPassword,
-    },
-  });
+  const existingUser = users.find((u: any) => u.email === email);
 
-  return new Response(JSON.stringify({ message: 'User created successfully', user }));
+  if (existingUser) {
+    return NextResponse.json({ error: "Email already in use" }, { status: 409 });
+  }
+
+  // Add new user
+  const newUser = { id: users.length + 1, email, password };
+  users.push(newUser);
+  fs.writeFileSync(filePath, JSON.stringify(users, null, 2));
+
+  return NextResponse.json({ message: "Sign-up successful", user: newUser });
 }

@@ -1,18 +1,22 @@
-import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
 
-const prisma = new PrismaClient();
+import { NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
 
 export async function POST(request: Request) {
   const { email, password } = await request.json();
 
-  // Find user in the database
-  const user = await prisma.user.findUnique({ where: { email } });
-  if (!user) return new Response(JSON.stringify({ error: 'User not found' }), { status: 404 });
+  // Read users from the JSON file
+  const filePath = path.join(process.cwd(), "data", "users.json");
+  const fileData = fs.readFileSync(filePath, "utf8");
+  const users = JSON.parse(fileData);
 
-  // Compare passwords
-  const isValid = await bcrypt.compare(password, user.password);
-  if (!isValid) return new Response(JSON.stringify({ error: 'Invalid password' }), { status: 400 });
+  // Find user
+  const user = users.find((u: any) => u.email === email && u.password === password);
 
-  return new Response(JSON.stringify({ message: 'Login successful' }));
+  if (user) {
+    return NextResponse.json({ message: "Login successful", user });
+  } else {
+    return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
+  }
 }

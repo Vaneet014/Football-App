@@ -7,4 +7,3 @@ node_modules/
 # Ignore environment variables
 .env
 
-package-lock.json
