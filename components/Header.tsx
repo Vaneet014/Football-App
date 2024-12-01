@@ -22,6 +22,9 @@ export default function Header() {
           <a href="/rules" className="hover:text-gray-300">
             Rules
           </a>
+          <a href="/awards" className="hover:text-gray-300">
+            Awards
+          </a>
           <a href="/login" className="hover:text-gray-300">
             Login
           </a>
