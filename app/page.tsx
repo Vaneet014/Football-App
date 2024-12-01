@@ -57,7 +57,7 @@ import React from "react";
 export default function Home() {
   return (
     <div
-      className="home-page h-full pt-32 bg-cover bg-center relative"
+      className="home-page h-full pt-3s bg-cover bg-center relative"
       style={{ backgroundImage: "url('/image-welcome.jpg')" }}
     >
      
