@@ -6,12 +6,10 @@ export default function Header() {
   return (
     <header className="fixed top-0 w-full z-[3] bg-gray-900 text-white py-4 shadow-md ">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
         <a href="/" className="text-2xl font-bold hover:text-gray-300">
           Football App
         </a>
 
-        {/* Navigation Links */}
         <nav className="hidden md:flex space-x-6">
           <a href="/" className="hover:text-gray-300">
             Home
@@ -30,7 +28,6 @@ export default function Header() {
           </a>
         </nav>
 
-        {/* Mobile Menu Button */}
         <button
           className="md:hidden text-gray-300 focus:outline-none"
           onClick={() => toggleMenu()}
@@ -52,7 +49,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <div
         id="mobileMenu"
         className="md:hidden flex flex-col space-y-4 mt-4 hidden"

@@ -36,7 +36,7 @@ export default function LeagueScoresPage() {
         if (data.matches) {
           setScores(data.matches);
         } else {
-          setScores([]); // If no matches available, set an empty array
+          setScores([]); 
         }
       } catch (err) {
         setError("Failed to fetch live scores.");

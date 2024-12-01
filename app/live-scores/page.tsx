@@ -3,7 +3,6 @@ import "../../styles/live-scores.css";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
-// List of leagues with unique IDs for API calls
 const leagues = [
   { id: "CL", name: "Champions League", image: "https://crests.football-data.org/CL.png" },
   { id: "PL", name: "Premier League", image: "https://crests.football-data.org/PL.png" },

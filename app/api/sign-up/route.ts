@@ -16,7 +16,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Email already in use" }, { status: 409 });
   }
 
-  // Add new user
   const newUser = { id: users.length + 1, email, password };
   users.push(newUser);
   fs.writeFileSync(filePath, JSON.stringify(users, null, 2));

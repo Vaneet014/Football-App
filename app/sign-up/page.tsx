@@ -18,7 +18,7 @@ export default function SignUpPage() {
     });
 
     if (res.ok) {
-      router.push("/login"); // Redirect to login after sign-up
+      router.push("/login"); 
     } else {
       const data = await res.json();
       setError(data.error);
